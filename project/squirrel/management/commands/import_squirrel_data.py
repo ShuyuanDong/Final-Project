@@ -8,7 +8,7 @@ import sqlite3
 class Command(BaseCommand):
 
     def add_arguments(self, parser):
-        parser.add_argument('--csvpath', type=str, default=False)
+        parser.add_argument('csvpath', type=str, default=False)
 
     def handle(self, *args, **options):
         dbpath = '/home/sd3416/Final_Project/project/db.sqlite3'
@@ -17,7 +17,7 @@ class Command(BaseCommand):
         datapath = options['csvpath']
         
         df = pd.read_csv(datapath, usecols=[0, 1, 2, 4, 5, 7, 8, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28])
-        df = df[:5]
+        #df = df[:5]
         conn = sqlite3.connect(dbpath)
         self.csv2sql(conn, df, table_name, columns)
         conn.commit()

@@ -7,13 +7,12 @@ import sqlite3
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
-        parser.add_argument('--csvpath', type=str, default=False)
+        parser.add_argument('csvpath', type=str, default=False)
     
     def handle(self, *args, **options):
         dbpath = '/home/sd3416/Final_Project/project/db.sqlite3'
         table_name = 'squirrel_squirrel'
-        columns = ['Latitude', 'Longitude', 'Date','Unique_Squirrel_ID', 'Shift', 'Data', 'Age', 'Primary_Fur_Color', 'Location', 'Specific_Location', 'Running', 'C
-hasing', 'Climbing', 'Eating', 'Foraging', 'Other_Activities', 'Kuks', 'Quaaa', 'Moans','Tail_flags', 'Approaches', 'Indifferent', 'Runs_from']
+        columns = ['Latitude', 'Longitude','Unique_Squirrel_ID', 'Shift','Date', 'Age', 'Primary_Fur_Color', 'Location', 'Specific_Location', 'Running', 'Chasing', 'Climbing', 'Eating', 'Foraging', 'Other_Activities', 'Kuks', 'Quaas', 'Moans','Tail_flags','Tail_twitches', 'Approaches', 'Indifferent', 'Runs_from']
         conn = sqlite3.connect(dbpath)
         outpath = options['csvpath']
         self.sql2csv(conn, table_name, columns, outpath)
@@ -31,5 +30,5 @@ hasing', 'Climbing', 'Eating', 'Foraging', 'Other_Activities', 'Kuks', 'Quaaa', 
             for idx, col in enumerate(columns):
                 new_row[col] = row[idx]
             df = df.append(new_row, ignore_index=True)
-        df.to_csv('./out.csv', index=False)
+        df.to_csv(outpath, index=False)
 

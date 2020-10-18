@@ -1,0 +1,15 @@
+{% if squirrels_list %}
+    <a href="{% url 'add' %}">Go and add more squrriels!</a>    
+    <table border="1">
+    {% for sqrl in squirrels_list %}
+        <tr>
+        <td>{{ sqrl.Unique_Squirrel_ID }}</td>
+        <td>{{ sqrl.Date }}</td>
+        <td><a href="{% url 'detail' sqrl.id %}">link</a></td>
+	</tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No squirrels list is empty.</p>
+{% endif %}
+
