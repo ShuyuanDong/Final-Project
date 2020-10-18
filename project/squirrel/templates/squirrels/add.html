@@ -23,84 +23,151 @@
         {{ form.Unique_Squirrel_ID }} <span>{{ form.Date.errors.0 }}</span>
     </div>
     <div>
-        <label for="id_{{form.Shift.name}}">Shift</label>
-        {{ form.Shift }} <span>{{ form.Shift.errors.0 }}</span>
+	 <label for="id_{{form.Shift.name}}">Choose a shift</label>
+   	 <select name="Shift" id="Shift">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+         </select>
     </div>
     <div>
         <label for="id_{{form.Date.name}}">Date</label>
         {{ form.Date }} <span>{{ form.Date.errors.0 }}</span>
     </div>
     <div>
-        <label for="id_{{form.Age.name}}">Age</label>
-        {{ form.Age }} <span>{{ form.Age.errors.0 }}</span>
+        <label for="id_{{form.Age.name}}">Choose an Age</label>
+	<select name="Age" id="Age">
+            <option value="Adult">Adult</option>
+            <option value="Juvenile">Juvenile</option>
+         </select>
     </div>
     <div>
-        <label for="id_{{form.Primary_Fur_Color.name}}">Primary Fur Color</label>
-        {{ form.Primary_Fur_Color }} <span>{{ form.Primary_Fur_Color.errors.0 }}</span>
+        <label for="id_{{form.Primary_Fur_Color.name}}">Choose a Primary Fur Color</label>
+    	<select name="Primary_Fur_Color" id="Primary_Fur_Color">
+	    <option value=""></option>
+            <option value="Gray">Gray</option>
+            <option value="Black">Black</option>
+	    <option value="Cinnamon">Cinnamon</option>
+         </select>
     </div>
     <div>
-        <label for="id_{{form.Location.name}}">Location</label>
-        {{ form.Location }} <span>{{ form.Location.errors.0 }}</span>
+        <label for="id_{{form.Location.name}}">Choose a Location</label>
+	<select name="Location" id="Location">
+            <option value=""></option>
+            <option value="Ground Plane">Ground Plane</option>
+            <option value="Above Ground">Above Ground</option>
+         </select>
     </div>
     <div>
         <label for="id_{{form.Specific_Location.name}}">Specific Location</label>
         {{ form.Specific_Location }} <span>{{ form.Specific_Location.errors.0 }}</span>
     </div>
     <div>
-        <label for="id_{{form.Running.name}}">Running</label>
-        {{ form.Running }} <span>{{ form.Running.errors.0 }}</span>
+        <label for="id_{{form.Running.name}}">Running? T/F</label>
+	<select name="Running" id="Running">
+            <option value=""></option>
+            <option value="True">True</option>
+            <option value="False">False</option>
+         </select>
     </div>
     <div>
-        <label for="id_{{form.Chasing.name}}">Chasing</label>
-        {{ form.Chasing }} <span>{{ form.Chasing.errors.0 }}</span>
+        <label for="id_{{form.Chasing.name}}">Chasing? T/F</label>
+	<select name="Chasing" id="Chasing">
+            <option value=""></option>
+            <option value="True">True</option>
+            <option value="False">False</option>
+         </select>
     </div>
     <div>
-        <label for="id_{{form.Climbing.name}}">Climbing</label>
-        {{ form.Climbing }} <span>{{ form.Climbing.errors.0 }}</span>
+        <label for="id_{{form.Climbing.name}}">Climbing? T/F</label>
+	<select name="Climbing" id="Climbing">
+            <option value=""></option>
+            <option value="True">True</option>
+            <option value="False">False</option>
+         </select>
     </div>
     <div>
-        <label for="id_{{form.Eating.name}}">Eating</label>
-        {{ form.Eating }} <span>{{ form.Eating.errors.0 }}</span>
+        <label for="id_{{form.Eating.name}}">Eating? T/F</label>
+	<select name="Eating" id="Easting">
+            <option value=""></option>
+            <option value="True">True</option>
+            <option value="False">False</option>
+         </select>
     </div>
     <div>
-        <label for="id_{{form.Foraging.name}}">Foraging</label>
-        {{ form.Foraging }} <span>{{ form.Foraging.errors.0 }}</span>
+        <label for="id_{{form.Foraging.name}}">Foraging? T/F</label>
+	<select name="Foraging" id="Foraging">
+            <option value=""></option>
+            <option value="True">True</option>
+            <option value="False">False</option>
+         </select>
     </div>
     <div>
         <label for="id_{{form.Other_Activities.name}}">Other Activities</label>
         {{ form.Other_Activities }} <span>{{ form.Other_Activities.errors.0 }}</span>
     </div>
     <div>
-        <label for="id_{{form.Kuks.name}}">Kuks</label>
-        {{ form.Kuks }} <span>{{ form.Kuks.errors.0 }}</span>
+        <label for="id_{{form.Kuks.name}}">Kuks? T/F</label>
+    	<select name="Kuks" id="Kuks">
+            <option value=""></option>
+            <option value="True">True</option>
+            <option value="False">False</option>
+         </select>
     </div>
     <div>
-        <label for="id_{{form.Quaas.name}}">Quaas</label>
-        {{ form.Quaas }} <span>{{ form.Quaas.errors.0 }}</span>
+        <label for="id_{{form.Quaas.name}}">Quaas? T/F</label>
+    	<select name="Quaas" id="Quaas">
+            <option value=""></option>
+            <option value="True">True</option>
+            <option value="False">False</option>
+         </select>
     </div>
     <div>
-        <label for="id_{{form.Moans.name}}">Moans</label>
-        {{ form.Moans }} <span>{{ form.Moans.errors.0 }}</span>
+        <label for="id_{{form.Moans.name}}">Moans? T/F</label>
+    	<select name="Moans" id="Moans">
+            <option value=""></option>
+            <option value="True">True</option>
+            <option value="False">False</option>
+         </select>
     </div>
     <div>
-        <label for="id_{{form.Tail_flags.name}}">Tail flags</label>
-        {{ form.Tail_flags }} <span>{{ form.Tail_flags.errors.0 }}</span>
+        <label for="id_{{form.Tail_flags.name}}">Tail flags? T/F</label>
+    	<select name="Tail_flags" id="Tail_flags">
+            <option value=""></option>
+            <option value="True">True</option>
+            <option value="False">False</option>
+         </select>
     </div>
     <div>
-        <label for="id_{{form.Tail_twitches.name}}">Tail twitches</label>
-        {{ form.Tail_twitches }} <span>{{ form.Tail_twitches.errors.0 }}</span>
+        <label for="id_{{form.Tail_twitches.name}}">Tail twitches? T/F</label>
+    	<select name="Tail_twitches" id="Tail_twitches">
+            <option value=""></option>
+            <option value="True">True</option>
+            <option value="False">False</option>
+         </select>
     </div>
     <div>
-        <label for="id_{{form.Approaches.name}}">Approaches</label>
-        {{ form.Approaches }} <span>{{ form.Approaches.errors.0 }}</span>
+        <label for="id_{{form.Approaches.name}}">Approaches? T/F</label>
+    	<select name="Approaches" id="Approaches">
+            <option value=""></option>
+            <option value="True">True</option>
+            <option value="False">False</option>
+         </select>
     </div>
     <div>
-        <label for="id_{{form.Indifferent.name}}">Indifferent</label>
-        {{ form.Indifferent }} <span>{{ form.Indifferent.errors.0 }}</span>
+        <label for="id_{{form.Indifferent.name}}">Indifferent? T/F</label>
+    	<select name="Indifferent" id="Indifferent">
+            <option value=""></option>
+            <option value="True">True</option>
+            <option value="False">False</option>
+         </select>
     </div>
     <div>
-        <label for="id_{{form.Runs_from.name}}">Runs from</label>
-        {{ form.Runs_from }} <span>{{ form.Runs_from.errors.0 }}</span>
+        <label for="id_{{form.Runs_from.name}}">Runs from? T/F</label>
+    	<select name="Runs_from" id="Runs_from">
+            <option value=""></option>
+            <option value="True">True</option>
+            <option value="False">False</option>
+         </select>
     </div>
     
     <input type="submit">
