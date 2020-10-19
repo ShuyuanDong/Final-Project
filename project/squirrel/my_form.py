@@ -21,7 +21,7 @@ class EmpForm(forms.Form):
     Quaas = forms.BooleanField(label="Quaas", required=False)
     Moans = forms.BooleanField(label="Moans", required=False)
     Tail_flags = forms.BooleanField(label="Tail_flags", required=False)
-    Tail_twiches = forms.BooleanField(label="Tail_twiches", required=False)
+    Tail_twitches = forms.BooleanField(label="Tail_twitches", required=False)
     Approaches = forms.BooleanField(label="Approaches", required=False)
     Indifferent = forms.BooleanField(label="Indifferent", required=False)
     Runs_from = forms.BooleanField(label="Runs_from", required=False)

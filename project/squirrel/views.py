@@ -15,7 +15,12 @@ def sightings(request):
     #return HttpResponse(template.render(context))
 
 def detail(request, sid):
-    return HttpResponse(sid)
+    squirrel = Squirrel.objects.get(Unique_Squirrel_ID = sid)
+    context = {
+            'squirrel': squirrel,
+            }
+
+    return render(request, 'squirrels/detail.html', context)
 
 @csrf_exempt
 def add(request):
@@ -26,8 +31,7 @@ def add(request):
         form = EmpForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            print(data['Tail_twiches'])
-            #Squirrel.objects.create(**data)
+            Squirrel.objects.create(**data)
             return HttpResponse(
                     'The squirrel is successfully uploaded!'
                 )
@@ -45,6 +49,6 @@ def map(request):
     context = {
             'sightings': sightings
     }
-    return render(request,'squirrel/map.html',context)
+    return render(request,'squirrels/map.html',context)
 
 

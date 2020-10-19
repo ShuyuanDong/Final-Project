@@ -35,8 +35,8 @@
     <!-- Leaflet JS -->
     <script>
         var map_center = [
-            40.782091,  // Longitude
-            -73.964285  // Latitude
+            40.782091,  // Latitude
+            -73.964285  // Longitude
         ];
         var zoom_level = 14;
         var map = L.map('map').setView(map_center, zoom_level);
@@ -52,9 +52,14 @@
         <!-- L.Icon.Default.prototype.options.shadowAnchor = [0, 0]; -->
 
         {% for sighting in sightings %}
-          var point_lat_lon = [{{ sighting.latitude }}, {{ sighting.longitude }}];
-          var marker = L.marker(point_lat_lon).addTo(map);
-        {% endfor %}
+          var point_lat_lon = [{{ sighting.Longitude }}, {{ sighting.Latitude }}];
+        	var marker = L.circle(point_lat_lon, {
+			color: 'red',
+			fillColor: '#f03',
+			fillOpacity: 0.5,
+			radius: 50
+			}).addTo(map);
+	{% endfor %}
     </script>
   </body>
 </html>
