@@ -47,4 +47,35 @@ def map(request):
     }
     return render(request,'squirrel/map.html',context)
 
+def stats(request):
+    sightings_total = Squirrel.objects.count()
+    sightings_black = Squirrel.objects.filter(primary_fur_color = 'Black').count()
+    chasing_true = Squirrel.objects.filter(chasing=True).count()
+    sightings_grey = Squirrel.objects.filter(primary_fur_color = 'Gray').count()
+    eating_true = Squirrel.objects,filter(eating=True).count()
+    context = {
+            'sightings_total':sightings_total,
+            'sightings_grey':sightings_grey,
+            'sightings_black': sightings_black,
+            'chasing_true':chasing_true,
+            'eating_true':eating_true,
+            }
+    return render(request,'squirrels/stats.html',context)
+
+
+def update(request,unique_squirrel_id):
+    squirrel=Squirrel.objects.get(unique_squirrel_id=unique_squirrel_id)
+    if request.method == 'POST':
+        form = SquirrelForm(request.Post, instance = squirrel)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/sightings')
+        else:
+            form = SquirrelForm(instance=squirrel)
+        context = {'form':form,}
+        return render(request,'squirrels/update/html',conext)
+
+
+
+
 
