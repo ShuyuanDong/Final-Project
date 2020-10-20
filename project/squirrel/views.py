@@ -53,10 +53,10 @@ def map(request):
 
 def stats(request):
     sightings_total = Squirrel.objects.count()
-    sightings_black = Squirrel.objects.filter(primary_fur_color = 'Black').count()
-    chasing_true = Squirrel.objects.filter(chasing=True).count()
-    sightings_grey = Squirrel.objects.filter(primary_fur_color = 'Gray').count()
-    eating_true = Squirrel.objects,filter(eating=True).count()
+    sightings_black = Squirrel.objects.filter(Primary_Fur_Color = 'Black').count()
+    chasing_true = Squirrel.objects.filter(Chasing=True).count()
+    sightings_grey = Squirrel.objects.filter(Primary_Fur_Color = 'Gray').count()
+    eating_true = Squirrel.objects,filter(Eating=True).count()
     context = {
             'sightings_total':sightings_total,
             'sightings_grey':sightings_grey,
