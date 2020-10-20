@@ -67,17 +67,17 @@ def stats(request):
     return render(request,'squirrels/stats.html',context)
 
 
-def update(request,unique_squirrel_id):
-    squirrel=Squirrel.objects.get(unique_squirrel_id=unique_squirrel_id)
+def update(request,Unique_Squirrel_ID):
+    squirrel=Squirrel.objects.get(Unique_Squirrel_ID=Unique_Squirrel_ID)
     if request.method == 'POST':
-        form = SquirrelForm(request.Post, instance = squirrel)
+        form = SquirrelForm(request.POST, instance = squirrel)
         if form.is_valid():
             form.save()
             return redirect(f'/sightings')
         else:
             form = SquirrelForm(instance=squirrel)
         context = {'form':form,}
-        return render(request,'squirrels/update/html',conext)
+        return render(request,'squirrels/update.html',context)
 
 
 
