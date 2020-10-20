@@ -7,8 +7,8 @@ Squirrel Tracker is a web application with Django framework which tracks squirre
 Group Name and Section
 Shuyuan and Yunlin, section 1
 
-UNIs:[yl4547,
+UNIs:[yl4547,sd3416]
 
-Link to server: 
+Link to server: https://github.com/ShuyuanDong/Final-Project.git
 
 
