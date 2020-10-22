@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from squirrel.models import Squirrel
 from django.template import Context, loader
 from squirrel.my_form import EmpForm
+from squirrel.squirrel_form import SquirrelForm
 from django.views.decorators.csrf import csrf_exempt
+import re
 
 def sightings(request):
     squirrels_list = Squirrel.objects.all()
@@ -67,18 +69,39 @@ def stats(request):
     return render(request,'squirrels/stats.html',context)
 
 
-def update(request,Unique_Squirrel_ID):
-    squirrel=Squirrel.objects.get(Unique_Squirrel_ID=Unique_Squirrel_ID)
-    if request.method == 'POST':
-        form = SquirrelForm(request.POST, instance = squirrel)
+def update(request,uid):
+    
+    def check(ID):
+        return re.match(r'(\d+[A-Z])-(PM|AM)-(\d{4})-(\d{2})', ID)
+    
+    squirrel=Squirrel.objects.get(Unique_Squirrel_ID=uid)
+    context = {'Latitude':squirrel.Latitude, 'Longitude':squirrel.Longitude,
+                'Unique_Squirrel_ID':squirrel.Unique_Squirrel_ID, 
+                'Shift':squirrel.Shift, 'Date':squirrel.Date, 'Age':squirrel.Age}
+    if request.method == "GET":
+        form = SquirrelForm(context)
+        return render(request, "squirrels/update.html", {"form": form})
+    else:
+        form = SquirrelForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect(f'/sightings')
+            cleaned_data = form.cleaned_data
+            in_ID = cleaned_data.get('Unique_Squirrel_ID')
+            if check(in_ID) is None:
+                form = SquirrelForm(context)
+                return render(request,'squirrels/update.html', {'form': form})
+            
+            squirrel.Unique_Squirrel_ID = in_ID
+            squirrel.Date = cleaned_data.get('Date')
+            squirrel.Longitude = cleaned_data.get('Longitude')
+            squirrel.Latitude = cleaned_data.get('Latitude')
+            squirrel.Shift = cleaned_data.get('Shift')
+            squirrel.Age = cleaned_data.get('Age')
+            squirrel.save()
+            return redirect('sightings')
         else:
-            form = SquirrelForm(instance=squirrel)
-        context = {'form':form,}
-        return render(request,'squirrels/update.html',context)
-
+            form = SquirrelForm(context)
+            return render(request,'squirrels/update.html', {'form': form})
+    
 
 
 

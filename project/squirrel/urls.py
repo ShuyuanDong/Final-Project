@@ -7,5 +7,6 @@ urlpatterns = [
     path('sightings/add/', views.add, name='add'),
     path('map/', views.map, name='map'),
     path('sightings/stats/', views.stats,name='stats'),
+    path('sightings/<str:uid>', views.update, name='update'),
 ]
 

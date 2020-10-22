@@ -1,5 +1,5 @@
 <!doctype html>
-<html kange="en">
+<html len="en">
 	<head>
 		<meta charset = utf-8>
 		<title> Squirrel Sighting Update </title>
@@ -7,9 +7,39 @@
 	<body>
 		<p>Update Squirrel Sighting</p>
 		<p>Update your information by clicking update sighting.</p>
+	
 		<form method = "post"}>
 			{% csrf_token %}
-			{{form.as_p}}
+			<div>
+        <label for="id_{{ form.Longitude.name }}">Longitude</label>
+        {{ form.Longitude }} <span>{{ form.Longitude.errors.0 }}</span>
+    </div>
+    <div>
+        <label for="id_{{ form.Latitude.name }}">Latitude</label>
+        {{ form.Latitude }} <span>{{ form.Latitude.errors.0 }}</span>
+    </div>
+    <div>
+        <label for="id_{{form.Unique_Squirrel_ID.name}}">Unique Squirrel ID</label>
+        {{ form.Unique_Squirrel_ID }} <span>{{ form.Unique_Squirrel_ID.errors.0 }}</span>
+    </div>
+    <div>
+         <label for="id_{{form.Shift.name}}">Choose a shift</label>
+         <select name="Shift" id="Shift">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+         </select>
+    </div>
+    <div>
+        <label for="id_{{form.Date.name}}">Date</label>
+        {{ form.Date }} <span>{{ form.Date.errors.0 }}</span>
+    </div>
+    <div>
+        <label for="id_{{form.Age.name}}">Choose an Age</label>
+        <select name="Age" id="Age">
+            <option value="Adult">Adult</option>
+            <option value="Juvenile">Juvenile</option>
+         </select>
+    </div>
 			<br>
 			<input type = "submit" value = "Update Sighting">
 		</form>
