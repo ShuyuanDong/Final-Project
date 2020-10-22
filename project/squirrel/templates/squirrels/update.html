@@ -10,7 +10,7 @@
 	
 		<form method = "post"}>
 			{% csrf_token %}
-			<div>
+    <div>
         <label for="id_{{ form.Longitude.name }}">Longitude</label>
         {{ form.Longitude }} <span>{{ form.Longitude.errors.0 }}</span>
     </div>

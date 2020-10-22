@@ -33,18 +33,17 @@ def add(request):
         form = EmpForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
+            squirrel = Squirrel.objects.filter(Unique_Squirrel_ID=data['Unique_Squirrel_ID']).first()
+            if squirrel is not None:
+                return HttpResponse('The Squirrel ID is dulplicated!')
             Squirrel.objects.create(**data)
             return HttpResponse(
                     'The squirrel is successfully uploaded!'
                 )
                 # return render(request, "add.html", {"form": form})
         else:
-            print(form.errors)
             clean_errors = form.errors.get("__all__")
-            print(222, clean_errors)
-        return render(request, "squirrels/add.html", {"form": form, "clean_errors":     clean_errors})
-    #return render(request, 'squirrels/add.html')
-# Create your views here.
+            return render(request, "squirrels/add.html", {"form": form, "clean_errors":clean_errors})
 
 def map(request):
     sightings = Squirrel.objects.all()[:100]
@@ -70,10 +69,6 @@ def stats(request):
 
 
 def update(request,uid):
-    
-    def check(ID):
-        return re.match(r'(\d+[A-Z])-(PM|AM)-(\d{4})-(\d{2})', ID)
-    
     squirrel=Squirrel.objects.get(Unique_Squirrel_ID=uid)
     context = {'Latitude':squirrel.Latitude, 'Longitude':squirrel.Longitude,
                 'Unique_Squirrel_ID':squirrel.Unique_Squirrel_ID, 
@@ -84,13 +79,7 @@ def update(request,uid):
     else:
         form = SquirrelForm(request.POST)
         if form.is_valid():
-            cleaned_data = form.cleaned_data
-            in_ID = cleaned_data.get('Unique_Squirrel_ID')
-            if check(in_ID) is None:
-                form = SquirrelForm(context)
-                return render(request,'squirrels/update.html', {'form': form})
-            
-            squirrel.Unique_Squirrel_ID = in_ID
+            squirrel.Unique_Squirrel_ID = cleaned_data.get('Unique_Squirrel_ID')
             squirrel.Date = cleaned_data.get('Date')
             squirrel.Longitude = cleaned_data.get('Longitude')
             squirrel.Latitude = cleaned_data.get('Latitude')
@@ -100,7 +89,8 @@ def update(request,uid):
             return redirect('sightings')
         else:
             form = SquirrelForm(context)
-            return render(request,'squirrels/update.html', {'form': form})
+            clean_errors = form.errors.get("__all__")
+            return render(request, "squirrels/update.html", {"form": form, "clean_errors":clean_errors})
     
 
 
