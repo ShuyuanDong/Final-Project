@@ -79,6 +79,7 @@ def update(request,uid):
     else:
         form = SquirrelForm(request.POST)
         if form.is_valid():
+            cleaned_data = form.cleaned_data
             squirrel.Unique_Squirrel_ID = cleaned_data.get('Unique_Squirrel_ID')
             squirrel.Date = cleaned_data.get('Date')
             squirrel.Longitude = cleaned_data.get('Longitude')
